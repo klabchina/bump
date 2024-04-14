@@ -9,6 +9,7 @@ builds:
     main: .
     goos:
       - linux
+      - darwin
     ldflags: -s -w -X main.version={{.Version}}
 
 archives:
