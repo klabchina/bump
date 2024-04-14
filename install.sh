@@ -328,6 +328,7 @@ hash_sha256_verify() {
     return 1
   fi
   BASENAME=${TARGET##*/}
+  # ignoring case (-i option in grep)　
   want=$(grep -i "${BASENAME}" ${checksums} 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
   if [ -z "$want" ]; then
     log_err "hash_sha256_verify unable to find checksum for '${TARGET}' in '${checksums}'"
