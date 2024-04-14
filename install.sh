@@ -331,11 +331,11 @@ hash_sha256_verify() {
   echo "${BASENAME}"
   echo "${checksums}"
   cat "${checksums}"
-  command="grep \"${BASENAME}\" \"${checksums}\""
+  command="grep \"${BASENAME}\" ${checksums}"
   echo $command
   result=$(eval $command)
-  grep "${BASENAME}" "${checksums}" | tr '\t' ' ' | cut -d ' ' -f 1
-  want=$(grep "${BASENAME}" "${checksums}" 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
+  grep "${BASENAME}" ${checksums} | tr '\t' ' ' | cut -d ' ' -f 1
+  want=$(grep "${BASENAME}" ${checksums} 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
   if [ -z "$want" ]; then
     log_err "hash_sha256_verify unable to find checksum for '${TARGET}' in '${checksums}'"
     return 1
