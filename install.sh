@@ -331,6 +331,8 @@ hash_sha256_verify() {
   echo "${BASENAME}"
   echo "${checksums}"
   cat "${checksums}"
+  grep "${BASENAME}" "${checksums}"
+  grep "${BASENAME}" "${checksums}" | tr '\t' ' ' | cut -d ' ' -f 1
   want=$(grep "${BASENAME}" "${checksums}" 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
   if [ -z "$want" ]; then
     log_err "hash_sha256_verify unable to find checksum for '${TARGET}' in '${checksums}'"
