@@ -331,7 +331,9 @@ hash_sha256_verify() {
   echo "${BASENAME}"
   echo "${checksums}"
   cat "${checksums}"
-  grep "${BASENAME}" "${checksums}"
+  command="grep \"${BASENAME}\" \"${checksums}\""
+  echo $command
+  result=$(eval $command)
   grep "${BASENAME}" "${checksums}" | tr '\t' ' ' | cut -d ' ' -f 1
   want=$(grep "${BASENAME}" "${checksums}" 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
   if [ -z "$want" ]; then
