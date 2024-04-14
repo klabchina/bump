@@ -346,7 +346,7 @@ End of functions from https://github.com/client9/shlib
 EOF
 
 PROJECT_NAME="bump"
-OWNER=klabchina
+OWNER=${OWNER:-haya14busa}
 REPO="bump"
 BINARY=bump
 FORMAT=tar.gz
