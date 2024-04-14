@@ -10,27 +10,14 @@ builds:
     ldflags: -s -w -X main.version={{.Version}}
 
 archives:
-  - id: main
-    replacements:
-      darwin: Darwin
-      linux: Linux
-      windows: Windows
-      386: i386
-      amd64: x86_64
-      arm64: ARM64
-    files:
-      - LICENSE
-      - README.md
-
-brews:
-  - github:
-      owner: haya14busa
-      name: homebrew-tap
-    folder: Formula
-    homepage:  https://github.com/haya14busa/bump
-    description: bump returns next semantic version tag.
-    test: |
-      system "#{bin}/bump -h"
+  - format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_linux_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
 
 checksum:
   name_template: 'checksums.txt'
@@ -42,5 +29,5 @@ changelog:
   sort: asc
   filters:
     exclude:
-    - '^docs:'
-    - '^test:'
+      - "^docs:"
+      - "^test:"
